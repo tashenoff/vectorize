@@ -13,12 +13,16 @@ const FileInput = ({ onUpload, draggingOver }) => {
   };
 
   const handleFile = (file) => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const imageData = event.target.result;
-      onUpload(imageData);
-    };
-    reader.readAsDataURL(file);
+    if (file.type === 'image/png' || file.type === 'image/jpeg') {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const imageData = event.target.result;
+        onUpload(imageData);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert('Please upload PNG or JPEG images only.');
+    }
   };
 
   const handleDragOver = (event) => {
@@ -36,6 +40,7 @@ const FileInput = ({ onUpload, draggingOver }) => {
       <input
         type="file"
         className="hidden"
+        accept="image/png, image/jpeg" // Разрешаем только PNG и JPEG файлы
         onChange={handleFileChange}
       />
       <button
