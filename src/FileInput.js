@@ -35,8 +35,8 @@ const FileInput = ({ onUpload, draggingOver }) => {
       onDrop={handleDrop}
       onDragOver={handleDragOver}
     >
-      <p className="text-lg font-medium">Drag & Drop Image File Here</p>
-      <p className="text-sm text-gray-500 mt-2">or click to select</p>
+      <p className="text-lg font-medium">Перенесите файл сюда</p>
+      <p className="text-sm text-gray-500 mt-2">или выберите в ручную</p>
       <input
         type="file"
         className="hidden"
@@ -47,7 +47,7 @@ const FileInput = ({ onUpload, draggingOver }) => {
         onClick={() => document.querySelector('input[type="file"]').click()}
         className="mt-4 px-6 py-2 bg-blue-500 text-white rounded"
       >
-        Select File
+        Выбрать файл
       </button>
     </div>
   );

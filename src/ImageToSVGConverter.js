@@ -79,21 +79,28 @@ function ImageToSVGConverter() {
               turdSize={turdSize}
               setTurdSize={setTurdSize}
               onClose={() => setShowSettings(false)}
-              onConfirm={handleConvert}
+              onConfirm={() => {
+                handleConvert();
+                setShowSettings(false);
+              }}
             />
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mb-8">
-          <div className="flex justify-center items-center">
-            <ImageView originalImage={originalImage} width="400px" height="auto" />
+        {originalImage && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center mb-8">
+            <div className="flex flex-col justify-center items-center">
+              <h2 className="text-lg font-semibold mb-2">Исходное изображение</h2>
+              <ImageView originalImage={originalImage} width="400px" height="auto" />
+            </div>
+            <div className="flex flex-col justify-center items-center">
+              <h2 className="text-lg font-semibold mb-2">Результат</h2>
+              <SvgView svgContent={svgContent} width="400px" />
+            </div>
           </div>
-          <div className="flex justify-center items-center">
-            <SvgView svgContent={svgContent} width="400px" />
-          </div>
-        </div>
+        )}
 
-        <div className="flex justify-center items-center mb-4">
+        <div className="flex flex-col lg:flex-row justify-center items-center mb-4">
           {originalImage && !svgContent && (
             <button
               onClick={handleConvert}
@@ -136,7 +143,7 @@ function ImageToSVGConverter() {
 
       <footer className="w-full bg-blue-600 py-4">
         <div className="container mx-auto text-white text-center">
-          <p>&copy; 2024 Конвертер изображения в SVG. Все права защищены.</p>
+          <p>&copy; 2024 Конвертер изображения в векторный формат. Все права защищены.</p>
         </div>
       </footer>
     </div>

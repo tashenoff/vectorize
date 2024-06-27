@@ -28,6 +28,7 @@ function TraceSettings({
           onChange={(e) => setThreshold(Number(e.target.value))}
           className="w-full"
         />
+        <span className="text-sm text-gray-600">{threshold}</span> {/* Display threshold value */}
       </div>
       <div className="mb-2 flex flex-col">
         <label className="mb-1">Политика поворота:</label>
